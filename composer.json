@@ -1,0 +1,27 @@
+{
+    "name": "yunwuxin/think-saml",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "yunwuxin",
+            "email": "448901948@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "think\\saml\\": "src"
+        }
+    },
+    "extra": {
+        "think": {
+            "config": {
+                "saml": "src/config.php"
+            }
+        }
+    },
+    "require": {
+        "topthink/framework": "^6.0",
+        "robrichards/xmlseclibs": "^3.1"
+    }
+}
