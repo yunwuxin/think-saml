@@ -2,6 +2,7 @@
 
 namespace think\saml;
 
+use League\Uri\Uri;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
@@ -49,7 +50,7 @@ class Auth
                 }
             }
 
-            foreach ($settings['contactPerson'] as $type => $contact) {
+            foreach ($settings['contactPerson'] as $contact) {
                 if (!isset($contact['givenName']) || empty($contact['givenName'])
                     || !isset($contact['emailAddress']) || empty($contact['emailAddress'])
                 ) {
@@ -499,8 +500,9 @@ AUTHNREQUEST;
 
     protected function redirectTo($url, $parameters = [])
     {
-        assert(is_string($url));
-        return redirect(url($url, $parameters));
+        $uri = Uri::createFromString($url)->withQuery(http_build_query($parameters));
+
+        return redirect((string) $uri);
     }
 
     protected function buildRequestSignature($samlRequest, $relayState, $signAlgorithm = XMLSecurityKey::RSA_SHA256)
