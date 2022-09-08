@@ -345,7 +345,7 @@ class Response
                 ValidationError::NO_SIGNATURE_FOUND
             );
         } else {
-            $cert           = $idpData['x509cert'];
+            $cert           = Utils::formatCert($idpData['x509cert']);
             $fingerprint    = $idpData['certFingerprint'];
             $fingerprintalg = $idpData['certFingerprintAlgorithm'];
 
